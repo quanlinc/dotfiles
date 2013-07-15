@@ -1,0 +1,103 @@
+#-------------------------------------------------------------
+# Functions
+#
+# Many functions were taken (almost) straight from the bash-2.04
+# examples.
+#-------------------------------------------------------------
+
+#-------------------------------------------------------------
+# File & string-related functions:
+#-------------------------------------------------------------
+
+# Find a file with a pattern in name:
+function ff() {
+    find . -type f -iname '*'$*'*' -ls ;
+}
+
+# Find a file with pattern $1 in name and Execute $2 on it:
+function fe(){
+    find . -type f -iname '*'${1:-}'*' -exec ${2:-file} {} \;  ;
+}
+
+function lowercase(){  # move filenames to lowercase
+    for file ; do
+        filename=${file##*/}
+        case "$filename" in
+        */*) dirname==${file%/*} ;;
+        *) dirname=.;;
+        esac
+        nf=$(echo $filename | tr A-Z a-z)
+        newname="${dirname}/${nf}"
+        if [ "$nf" != "$filename" ]; then
+            mv "$file" "$newname"
+            echo "lowercase: $file --> $newname"
+        else
+            echo "lowercase: $file not changed."
+        fi
+    done
+}
+
+function swap(){  # Swap 2 filenames around, if they exist
+    local TMPFILE=$$.tmp
+
+    [ $# -ne 2 ] && echo "swap: 2 arguments needed" && return 1
+    [ ! -e $1 ] && echo "swap: $1 does not exist" && return 1
+    [ ! -e $2 ] && echo "swap: $2 does not exist" && return 1
+
+    mv "$1" $TMPFILE 
+    mv "$2" "$1"
+    mv $TMPFILE "$2"
+}
+
+function extract()      # Handy Extract Program.
+{
+     if [ -f $1 ] ; then
+         case $1 in
+             *.tar.bz2)   tar xvjf $1     ;;
+             *.tar.gz)    tar xvzf $1     ;;
+             *.bz2)       bunzip2 $1      ;;
+             *.rar)       unrar x $1      ;;
+             *.gz)        gunzip $1       ;;
+             *.tar)       tar xvf $1      ;;
+             *.tbz2)      tar xvjf $1     ;;
+             *.tgz)       tar xvzf $1     ;;
+             *.zip)       unzip $1        ;;
+             *.Z)         uncompress $1   ;;
+             *.7z)        7z x $1         ;;
+             *)           echo "'$1' cannot be extracted via >extract<" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
+}
+
+#-------------------------------------------------------------
+# Misc utilities:
+#-------------------------------------------------------------
+
+function repeat(){       # Repeat n times command.
+    local i max
+    max=$1; shift;
+    for ((i=1; i <= max ; i++)); do  # --> C-like syntax
+        eval "$@";
+    done
+}
+
+
+# get gzipped size
+function gz() {
+    echo "orig size (bytes): "
+    cat "$1" | wc -c
+    echo "gzipped size (bytes): "
+    gzip -c "$1" | wc -c
+}
+
+# Copy w/ progress
+function cp_p () {
+  rsync -WavP --human-readable --progress $1 $2
+}
+
+# Create a new directory and enter it
+function md() {
+    mkdir -m 755 "$@" && cd "$@"
+}
