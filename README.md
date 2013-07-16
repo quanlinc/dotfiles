@@ -12,7 +12,7 @@ These dot files are tailored to meet my own needs, you are welcome to modify and
 * `.bash_profile`
 * `.bash_init_d`
  
-#### Below are files inside above directory
+Below are files inside above directory
 
 * `.aliases`
 * `.completion`
