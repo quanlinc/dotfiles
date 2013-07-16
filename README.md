@@ -7,8 +7,19 @@ Some of the functions are copied from the internet, many thanks to those authors
 
 These dot files are tailored to meet my own needs, you are welcome to modify and help me to improve
 
+### context for bash shell
+*  `.bashrc`
+*  `.bash_profile`
+*  `.bash_init_d`
+** `.aliases`
+** `.completion`
+** `.functions`
+** `.shell_options`
+** `.shell_prompt`
+
+
 ## Zsh
 Used for work, will be added soon
 
 ## Git related
-will be added soon
+Highly personal alias and color scheme

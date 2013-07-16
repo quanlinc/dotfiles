@@ -1,0 +1,27 @@
+[alias]
+	st = status
+	co = checkout
+	c = commit
+        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+[user]
+	name = {your user name}
+	email = {your email address}
+[color]
+	ui = true
+[core]
+	excludesfile = ~/.gitignore
+	autocrlf = input
+	pager = cat
+[color "diff"]
+	meta = yellow bold
+        frag = white bold
+        old = red bold
+        new = green bold
+[color "status"]
+       added = green
+       changed = yellow
+       untracked = cyan
+[url "git://git.gnome.org/"]
+        insteadOf = "gnome:"
+[url "ssh://git.gnome.org/git/"]
+        insteadOf = "gnome-ssh:"
