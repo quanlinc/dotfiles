@@ -11,7 +11,7 @@ These dot files are tailored to meet my own needs, you are welcome to modify and
 * `.bashrc`
 * `.bash_profile`
 * `.bash_init_d`
-####below are files inside above directory####
+####below are files inside above directory
 * `.aliases`
 * `.completion`
 * `.functions`
