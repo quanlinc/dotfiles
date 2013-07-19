@@ -3,15 +3,17 @@
 	co = checkout
 	c = commit
         lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+        dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(green)"%cn" <%ce>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 [user]
 	name = {your user name}
 	email = {your email address}
 [color]
-	ui = true
+	ui = auto
+	diff = auto
 [core]
 	excludesfile = ~/.gitignore
 	autocrlf = input
-	pager = cat
+	pager = less -FMRiX
 [color "diff"]
 	meta = yellow bold
         frag = white bold
