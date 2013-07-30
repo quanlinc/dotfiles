@@ -22,7 +22,7 @@ Below are files inside above directory
 
 
 ## Zsh
-Used for work, will be added soon
+Need some cleanup
 
 ## Git related
 Highly personal alias and color scheme
