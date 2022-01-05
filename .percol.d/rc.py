@@ -1,18 +1,17 @@
 # Run command file for percol
 # X / _ / X
-percol.view.PROMPT  = ur"<bold><yellow>X / _ / X</yellow></bold> %q"
-
-percol.view.prompt_replacees["F"] = lambda self, **args: self.model.finder.get_name()
-percol.view.RPROMPT = ur"(%F) [%i/%I]"
+#percol.view.PROMPT  = r"<bold><yellow>X / _ / X</yellow></bold> %q"
 
 # Change prompt in response to the status of case sensitivity
-# percol.view.__class__.PROMPT = property(
-#     lambda self:
-#     ur"<bold><blue>QUERY </blue>[a]:</bold> %q" if percol.model.finder.case_insensitive
-#     else ur"<bold><green>QUERY </green>[A]:</bold> %q"
-# )
+percol.view.__class__.PROMPT = property(
+    lambda self:
+    r"<bold><yellow>X / _ / X</yellow>[a]:</bold> %q" if percol.model.finder.case_insensitive
+    else r"<bold><green>X / _ / X</green>[A]:</bold> %q"
+)
 
-
+# Display finder name in RPROMPT
+percol.view.prompt_replacees["F"] = lambda self, **args: self.model.finder.get_name()
+percol.view.RPROMPT = r"(%F) [%i/%I]"
 
 # Emacs like
 percol.import_keymap({
@@ -44,4 +43,3 @@ percol.view.CANDIDATES_LINE_BASIC    = ("on_default", "default")
 percol.view.CANDIDATES_LINE_SELECTED = ("underline", "on_yellow", "black")
 percol.view.CANDIDATES_LINE_MARKED   = ("bold", "on_cyan", "black")
 percol.view.CANDIDATES_LINE_QUERY    = ("yellow", "bold")
-
